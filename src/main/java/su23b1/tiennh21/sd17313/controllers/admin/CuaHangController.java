@@ -1,6 +1,8 @@
 package su23b1.tiennh21.sd17313.controllers.admin;
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,14 +19,13 @@ import java.util.ArrayList;
 public class CuaHangController {
     private ArrayList<CuaHangVM> list = new ArrayList<>();
 
+    @Autowired
+    @Qualifier("ch_vm1")
+    private CuaHangVM vm;
+
     @GetMapping("create")
     public String create(Model model)
     {
-        CuaHangVM vm = new CuaHangVM();
-        vm.setMa("CH01");
-        vm.setTen("Cua hang 01");
-        vm.setQuocGia("VN");
-        vm.setThanhPho("ND");
         model.addAttribute("data", vm);
         return "admin/cua_hang/create";
     }
