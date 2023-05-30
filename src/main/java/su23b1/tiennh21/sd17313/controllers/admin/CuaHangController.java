@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import su23b1.tiennh21.sd17313.entities.CuaHang;
+import su23b1.tiennh21.sd17313.repositories.CuaHangRepository;
 import su23b1.tiennh21.sd17313.request.CuaHangVM;
 
 import java.util.ArrayList;
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("admin/cua-hang")
 public class CuaHangController {
-    private ArrayList<CuaHangVM> list = new ArrayList<>();
+    @Autowired
+    private CuaHangRepository chRepo;
 
     @Autowired
     @Qualifier("ch_vm1")
@@ -35,6 +38,13 @@ public class CuaHangController {
         @Valid @ModelAttribute("data") CuaHangVM vm,
         BindingResult result
     ) {
+        CuaHang ch = new CuaHang();
+        ch.setTen( vm.getTen() );
+        ch.setMa( vm.getMa() );
+        ch.setDiaChi( vm.getDiaChi() );
+        ch.setThanhPho( vm.getThanhPho() );
+        ch.setQuocGia( vm.getQuocGia() );
+        this.chRepo.save(ch);
         return "admin/cua_hang/create";
     }
 }
