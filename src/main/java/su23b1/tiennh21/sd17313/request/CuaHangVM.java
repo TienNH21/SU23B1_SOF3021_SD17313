@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import su23b1.tiennh21.sd17313.entities.CuaHang;
 
 @Getter
 @Setter
@@ -26,4 +27,13 @@ public class CuaHangVM {
 
     @NotBlank
     private String quocGia;
+
+    public void loadFromDomainModel(CuaHang domain)
+    {
+        this.setTen( domain.getTen() );
+        this.setMa( domain.getMa() );
+        this.setDiaChi( domain.getDiaChi() );
+        this.setThanhPho( domain.getThanhPho() );
+        this.setQuocGia( domain.getQuocGia() );
+    }
 }

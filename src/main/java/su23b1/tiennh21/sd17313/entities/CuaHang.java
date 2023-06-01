@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import su23b1.tiennh21.sd17313.request.CuaHangVM;
 
 import java.util.UUID;
 
@@ -14,22 +15,31 @@ import java.util.UUID;
 @NoArgsConstructor @AllArgsConstructor
 public class CuaHang {
     @Id
-    @Column("Id")
+    @Column(name="Id")
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column("Ma")
+    @Column(name="Ma")
     private String ma;
 
-    @Column("Ten")
+    @Column(name="Ten")
     private String ten;
 
-    @Column("DiaChi")
+    @Column(name="DiaChi")
     private String diaChi;
 
-    @Column("ThanhPho")
+    @Column(name="ThanhPho")
     private String thanhPho;
 
-    @Column("QuocGia")
+    @Column(name="QuocGia")
     private String quocGia;
+
+    public void loadFromViewModel(CuaHangVM vm)
+    {
+        this.setTen( vm.getTen() );
+        this.setMa( vm.getMa() );
+        this.setDiaChi( vm.getDiaChi() );
+        this.setThanhPho( vm.getThanhPho() );
+        this.setQuocGia( vm.getQuocGia() );
+    }
 }
