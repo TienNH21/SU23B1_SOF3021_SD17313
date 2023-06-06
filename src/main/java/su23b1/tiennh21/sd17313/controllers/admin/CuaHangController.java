@@ -89,4 +89,12 @@ public class CuaHangController {
         this.chRepo.save(oldValue);
         return "redirect:/admin/cua-hang/index";
     }
+
+    @GetMapping("/detail/{ma}")
+    @ResponseBody
+    public String getByMa(@PathVariable("ma") String ma)
+    {
+        CuaHang ch = this.chRepo.findByMaEquals(ma);
+        return ch.getTen() + "-" + ch.getMa() + "-" + ch.getDiaChi();
+    }
 }
